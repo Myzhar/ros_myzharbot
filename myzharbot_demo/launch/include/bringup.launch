@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <arg name="rgbd_enabled" default="false"/>
+  <arg name="joystick_enabled" default="false"/>
+
+  <!-- Start uNav Hardware Interface -->
+  <include file="$(find myzharbot_control)/launch/include/driver.launch" />
+  
+  <!-- load RGBD camera and laser scan -->
+  <group if="$(arg rgbd_enabled)">
+    <include file="$(find myzharbot_control)/launch/include/rgbd.launch" />
+  </group>  
+
+  <!-- Launch IMU sensor -->
+  <!-- <include file="$(find dude_control)/launch/include/imu.launch" /> -->
+
+  <!-- Load teleoperation telecontrol -->
+  <!-- <group if="$(arg joystick_enabled)">
+  <include file="$(find dude_control)/launch/teleop.launch" />
+  </group> -->
+
+  <!-- Load controller and twix-mux -->
+  <include file="$(find myzharbot_control)/launch/control.launch" />
+ 
+</launch>

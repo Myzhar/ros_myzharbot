@@ -1,0 +1,21 @@
+<launch>
+  <node pkg="ros_ultrasonic_bumper_speed_filter" type="ultrasonic_bumper_speed_filter_node" name="ultrasonic_bumper_speed_filter_node" output="screen">
+    <remap from="cmd_vel_filtered" to="unav_velocity_controller/cmd_vel"/>
+
+    <!-- The node takes in input the ranges measured by Ultrasonic Bumper Board and the twist message
+         realted to robot speeds (forward speed and rotation speed) and reduces the forward speed
+         according to Stop and Secure range
+
+         RANGE:          Stop Range_______________Half Range__________________Secure range
+         OUTPUT SPEED:  Robot stopped            0.5*Fw_speed                 Full Fw_speed
+
+         Default configuration stops the robot for ranges below 10 cm and emits full speed for
+         ranges over 1 meter -->
+
+     <!-- Stop range (m) [Default: 0.10] -->
+     <param name="stop_range" value="0.10"/>
+     
+     <!-- Secure range (m) [Default: 1.0] -->
+     <param name="secure_range" value="1.0"/>
+   </node>   
+</launch>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="myzharbot_motor">	
+  
+  <xacro:macro name="myzharbot_motor" params="position *joint_pose">
+  
+    <link name="${position}_motor_link">
+      <visual>
+        <geometry>
+          <cylinder length="0.09" radius="0.02"/>
+        </geometry>
+        <material name="Grey" />
+      </visual>
+    </link>
+  
+    <joint name="${position}_motor" type="fixed">      
+      <parent link="base_link"/>
+      <child link="${position}_motor_link"/>
+      <limit effort="100" velocity="100"/>
+      <joint_properties damping="0.0" friction="0.0"/>
+      <xacro:insert_block name="joint_pose"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+  
+  </xacro:macro>
+
+</robot>

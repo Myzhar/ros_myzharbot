@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="myzharbot_passive_sprocket">	
+
+  <xacro:macro name="myzharbot_passive_sprocket" params="sprocket_suffix position *joint_pose">
+  
+    <link name="spr_${sprocket_suffix}">
+      <visual>
+        <geometry>
+          <cylinder length="${passive_sprocket_leght}" radius="${passive_sprocket_radius}"/>
+        </geometry>
+        <material name="DarkGrey" />
+      </visual>
+    </link>
+  
+    <joint name="Sprocket_${sprocket_suffix}" type="continuous">
+      <parent link="base_link"/>
+      <child link="spr_${sprocket_suffix}"/>
+      <limit effort="100" velocity="100"/>
+      <joint_properties damping="0.0" friction="0.0"/>
+      <xacro:insert_block name="joint_pose"/>
+      <axis xyz="0 0 1" rpy="0 0 0"/>
+      <!-- Passive sprocket rotate automatically according to the status of the active one -->
+      <mimic joint="${position}" multiplier="${active_sprocket_radius/passive_sprocket_radius}" offset="0"/>
+    </joint>
+
+  </xacro:macro>
+  
+</robot>

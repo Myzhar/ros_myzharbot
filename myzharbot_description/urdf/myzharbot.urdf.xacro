@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<robot name="myzharbot_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Included URDF/XACRO Files -->
+  <xacro:include filename="$(find myzharbot_description)/urdf/materials.urdf" />
+  <xacro:include filename="$(find myzharbot_description)/urdf/passive_sprocket.urdf.xacro" />
+  <xacro:include filename="$(find myzharbot_description)/urdf/active_sprocket.urdf.xacro" />
+  <xacro:include filename="$(find myzharbot_description)/urdf/motor.urdf.xacro" />
+  <xacro:include filename="$(find myzharbot_description)/urdf/sensors/asus_xtion_pro.urdf.xacro"/>
+  <!-- Included URDF/XACRO Files -->
+
+  <!-- Global properties -->
+  <property name="M_PI" value="3.14159"/>
+  <!-- Global properties -->
+  
+  <!-- Sprockets params -->
+  <property name="active_sprocket_radius" value="0.047625"/>
+  <property name="passive_sprocket_radius" value="0.047625"/>
+  <property name="active_sprocket_leght" value="0.034925"/>
+  <property name="passive_sprocket_leght" value="0.047625"/>
+  <property name="passive_sprocket_offset_x" value="0.135"/>
+  <property name="passive_sprocket_offset_y" value="0.165"/>
+  <property name="passive_sprocket_offset_z" value="0.047625"/>
+  <property name="active_sprocket_offset_x" value="-0.055"/>
+  <property name="active_sprocket_offset_y" value="0.160"/>
+  <property name="active_sprocket_offset_z" value="0.150"/>
+  <!-- Sprockets params -->
+
+  <!-- Asus Xtion params -->
+  <property name="cam_px" value="0.095" />
+  <property name="cam_py" value="0.022" />
+  <property name="cam_pz" value="0.1825" />
+  <property name="cam_or" value="0" />
+  <property name="cam_op" value="0" />
+  <property name="cam_oy" value="0" />
+  <!-- Asus Xtion params -->
+
+  <!-- base_link -->
+  <link name="base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length=".001" radius="0.05"/>
+      </geometry>
+      <material name="Red" />
+    </visual>
+  </link>
+  <!-- base_link -->
+
+  <!-- Body chassis -->
+  <link name="body_bottom_chassis_link">
+    <visual>
+      <geometry>
+        <box size="0.27 0.27 .005"/>
+      </geometry>
+      <material name="Black" />
+    </visual>
+  </link>
+  <joint name="Body_bottom" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="body_bottom_chassis_link"/>
+    <origin rpy="0 0 0" xyz="0 0 ${passive_sprocket_offset_z+0.01}"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>  
+
+  <link name="body_top_chassis_link">
+    <visual>
+      <geometry>
+        <box size="0.13 0.27 .055"/>
+      </geometry>
+      <material name="Black" />
+    </visual>
+  </link>
+  <joint name="Body_top" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="body_top_chassis_link"/>
+    <origin rpy="0 0 0" xyz="-0.035 0 ${passive_sprocket_offset_z+0.0375}"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint> 
+
+  <link name="asus_support_link">
+    <visual>
+      <geometry>
+        <box size="0.015 0.015 .015"/>
+      </geometry>
+      <material name="Black" />
+    </visual>
+  </link>
+  <joint name="Asus_support" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="asus_support_link"/>
+    <origin rpy="0 0 0" xyz="${cam_px-0.01725} 0 0.1575"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+  <!-- Body chassis --> 
+
+  <!-- Jetson chassis -->
+  <link name="jetson_chassis_link">
+    <visual>
+      <geometry>
+        <box size="0.13 0.15 .095"/>
+      </geometry>
+      <material name="Black" />
+    </visual>
+  </link>
+  <joint name="Jetson" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="jetson_chassis_link"/>
+    <origin rpy="0 0 0" xyz="0.035 0 ${passive_sprocket_offset_z+0.0125+0.0475}"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>  
+  <!-- Jetson chassis --> 
+
+  <!-- Asus Xtion Pro Live -->  
+  <xacro:sensor_asus_xtion_pro parent="base_link"/>
+  <!-- Asus Xtion Pro Live --> 
+
+  <!-- Active Sprockets -->
+  <xacro:myzharbot_active_sprocket position="Left">
+    <origin xyz="${active_sprocket_offset_x} ${active_sprocket_offset_y} ${active_sprocket_offset_z}" rpy="${-M_PI/2} 0 0" />
+  </xacro:myzharbot_active_sprocket>
+  <xacro:myzharbot_active_sprocket position="Right">
+    <origin xyz="${active_sprocket_offset_x} ${-active_sprocket_offset_y} ${active_sprocket_offset_z}" rpy="${-M_PI/2} 0 0" />
+  </xacro:myzharbot_active_sprocket>
+  <xacro:myzharbot_motor position="Left">
+    <origin xyz="${active_sprocket_offset_x} ${active_sprocket_offset_y-2*active_sprocket_leght} ${active_sprocket_offset_z}" rpy="${-M_PI/2} 0 0" />
+  </xacro:myzharbot_motor>
+  <xacro:myzharbot_motor position="Right">
+    <origin xyz="${active_sprocket_offset_x} ${-(active_sprocket_offset_y-2*active_sprocket_leght)} ${active_sprocket_offset_z}" rpy="${-M_PI/2} 0 0" />
+  </xacro:myzharbot_motor>
+  <!-- Active Sprockets -->  
+    
+  <!-- Passive Sprockets -->
+  <xacro:myzharbot_passive_sprocket sprocket_suffix="bfl" position="Left">
+    <origin xyz="${passive_sprocket_offset_x} ${passive_sprocket_offset_y} ${passive_sprocket_offset_z}" rpy="${-M_PI/2} 0 0" />
+  </xacro:myzharbot_passive_sprocket>
+  <xacro:myzharbot_passive_sprocket sprocket_suffix="brl" position="Left">
+    <origin xyz="${-passive_sprocket_offset_x} ${passive_sprocket_offset_y} ${passive_sprocket_offset_z}" rpy="${-M_PI/2} 0 0" />
+  </xacro:myzharbot_passive_sprocket>
+  <xacro:myzharbot_passive_sprocket sprocket_suffix="bfr" position="Right">
+    <origin xyz="${passive_sprocket_offset_x} ${-passive_sprocket_offset_y} ${passive_sprocket_offset_z}" rpy="${-M_PI/2} 0 0" />
+  </xacro:myzharbot_passive_sprocket>
+  <xacro:myzharbot_passive_sprocket sprocket_suffix="brr" position="Right">
+    <origin xyz="${-passive_sprocket_offset_x} ${-passive_sprocket_offset_y} ${passive_sprocket_offset_z}" rpy="${-M_PI/2} 0 0" />
+  </xacro:myzharbot_passive_sprocket>
+  <!-- Passive Sprockets -->
+  
+
+</robot>

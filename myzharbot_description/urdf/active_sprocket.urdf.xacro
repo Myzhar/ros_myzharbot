@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="myzharbot_active_sprocket">	
+  
+  <xacro:macro name="myzharbot_active_sprocket" params="position *joint_pose">
+  
+    <link name="${position}_wheel_link">
+      <visual>
+        <geometry>
+          <cylinder length="${active_sprocket_leght}" radius="${active_sprocket_radius}"/>
+        </geometry>
+        <material name="DarkGrey" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder length="${active_sprocket_leght}" radius="${active_sprocket_radius}"/>
+        </geometry>
+      </collision>
+    </link>
+  
+    <joint name="${position}" type="continuous">      
+      <parent link="base_link"/>
+      <child link="${position}_wheel_link"/>
+      <limit effort="100" velocity="100"/>
+      <joint_properties damping="0.0" friction="0.0"/>
+      <xacro:insert_block name="joint_pose"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <transmission name="${position}_trans" type="SimpleTransmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="${position}_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="${position}">
+        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+  
+  </xacro:macro>
+
+</robot>

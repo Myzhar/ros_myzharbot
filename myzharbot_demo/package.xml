@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <name>myzharbot_demo</name>
+  <version>0.1.0</version>
+  <description>
+	This is a list of all demo avaiable for robot
+  </description>
+
+  
+  <maintainer email="raffaello.bonghi@officinerobotiche.it">Raffaello Bonghi</maintainer>
+
+  <license>BSD</license>
+
+  <url type="repository">https://github.com/rbonghi/dude_demo</url>
+
+  <author email="raffaello.bonghi@officinerobotiche.it">Raffaello Bonghi</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+
+  <run_depend>dude_description</run_depend>
+  <run_depend>orbus_interface</run_depend>
+
+</package>
