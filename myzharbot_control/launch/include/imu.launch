@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<launch>
+  <node pkg="ros_inemo_m1_imu" type="inemo_m1_node" name="inemo_m1_node" output="screen">      
+     <!-- Data frequency [Available values (Hz): 1 10 25 30 50 100 400] (default: 50) -->
+     <param name="data_freq" value="50"/>
+
+     <!-- Algorithm AHRS (default: true) - Needs: accel, gyro, magn -->
+     <param name="ahrs_enabled" value="true"/>  
+
+     <!-- Algorithm Compass (default: false) - Needs: accel, gyro, magn -->
+     <param name="compass_enabled" value="false"/>  
+
+     <!-- Accelerometer sensor (default: true) -->
+     <param name="accel_enabled" value="true"/> 	
+
+     <!-- Gyroscope sensor(default: true) -->
+     <param name="gyro_enabled" value="true"/>
+
+     <!-- Magnetometer sensor (default: true) -->
+     <param name="magn_enabled" value="true"/>
+
+     <!-- Pressure sensor (default: false) -->
+     <param name="press_enabled" value="false"/>
+
+     <!-- Temperature sensor (default: true) -->
+     <param name="temp_enabled" value="true"/>
+
+     <!-- Accelerometer variance (default: 0.01) -->
+     <param name="accel_variance_x" value="0.01"/>
+     <param name="accel_variance_y" value="0.01"/>
+     <param name="accel_variance_z" value="0.01"/>
+
+     <!-- Gyroscope variance (default: 0.01) -->
+     <param name="gyro_variance_x" value="0.01"/>
+     <param name="gyro_variance_y" value="0.01"/>
+     <param name="gyro_variance_z" value="0.01"/>
+
+     <!-- Pose variance (default: 0.01) -->
+     <param name="roll_variance" value="0.1"/>
+     <param name="pitch_variance" value="0.1"/>
+     <param name="yaw_variance" value="0.1"/>
+   </node>   
+</launch>

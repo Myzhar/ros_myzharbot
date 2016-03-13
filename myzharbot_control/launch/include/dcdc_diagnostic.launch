@@ -1,0 +1,15 @@
+<launch>
+  <node pkg="ros_dcdc_usb" type="dcdc_usb_node" name="dcdc_usb_node" output="screen">      
+     <!-- Critical low battery level (V) [Default 12.3 - 4S Lithium battery] -->
+     <param name="criticalLowInput" value="12.3"/>
+     
+     <!-- Warning low battery level (V) [Default 12.8 - 4S Lithium battery] -->
+     <param name="warningLowInput" value="12.8"/>
+
+     <!-- Output level (V) [Default 12.0] -->
+     <param name="output" value="12.0"/>
+ 
+     <!-- Output tollerance (V) [Default 0.3] -->
+     <param name="outputToll" value="0.3"/>
+   </node>   
+</launch>

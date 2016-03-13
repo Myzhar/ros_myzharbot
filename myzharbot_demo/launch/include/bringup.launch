@@ -8,20 +8,23 @@
   <!-- Start uNav Hardware Interface -->
   <include file="$(find myzharbot_control)/launch/include/driver.launch" />
   
-  <!-- load RGBD camera and laser scan -->
+  <!-- Start RGBD camera and laser scan -->
   <group if="$(arg rgbd_enabled)">
     <include file="$(find myzharbot_control)/launch/include/rgbd.launch" />
   </group>  
 
-  <!-- Launch IMU sensor -->
-  <!-- <include file="$(find dude_control)/launch/include/imu.launch" /> -->
+  <!-- Start IMU sensor -->
+  <include file="$(find myzharbot_control)/launch/include/imu.launch" />
+
+  <!-- Start DCDC Diagnostic node -->
+  <include file="$(find myzharbot_control)/launch/include/dcdc_diagnostic.launch" />
 
   <!-- Load teleoperation telecontrol -->
   <!-- <group if="$(arg joystick_enabled)">
   <include file="$(find dude_control)/launch/teleop.launch" />
   </group> -->
 
-  <!-- Load controller and twix-mux -->
+  <!-- Start controller, Ultrasonic bumper filter and EKF-->
   <include file="$(find myzharbot_control)/launch/control.launch" />
  
 </launch>
