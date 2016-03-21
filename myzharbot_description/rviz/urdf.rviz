@@ -8,7 +8,6 @@ Panels:
         - /Status1
         - /TF1/Frames1
         - /TF1/Tree1
-        - /TF1/Tree1/base_link1
       Splitter Ratio: 0.5
     Tree Height: 565
   - Class: rviz/Selection
@@ -60,84 +59,89 @@ Visualization Manager:
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
+        Left_motor_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        Left_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         Link Tree Style: Links in Alphabetic Order
+        Right_motor_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        Right_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        asus_support_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        battery_Link:
+        body_bottom_chassis_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        camera_depth_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_depth_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_rgb_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        camera_rgb_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        column_body_Link:
+        body_top_chassis_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        electronics_Link:
+        jetson_chassis_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        jetson_board_Link:
+        rgbd_camera_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_camera_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_motor_Link:
+        rgbd_camera_rgb_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_camera_rgb_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        spr_bfl:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_wheel_link:
+        spr_bfr:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        omniwheel_Link:
+        spr_brl:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_motor_Link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wall_body_Link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        xtion_camera_Link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        xtion_sensor_Link:
+        spr_brr:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -153,39 +157,41 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        Left_motor_link:
+          Value: true
+        Left_wheel_link:
+          Value: true
+        Right_motor_link:
+          Value: true
+        Right_wheel_link:
+          Value: true
+        asus_support_link:
+          Value: true
         base_link:
           Value: true
-        battery_Link:
-          Value: false
-        camera_depth_frame:
+        body_bottom_chassis_link:
           Value: true
-        camera_depth_optical_frame:
+        body_top_chassis_link:
           Value: true
-        camera_rgb_frame:
+        jetson_chassis_link:
           Value: true
-        camera_rgb_optical_frame:
+        rgbd_camera_depth_frame:
           Value: true
-        column_body_Link:
-          Value: false
-        electronics_Link:
-          Value: false
-        jetson_board_Link:
-          Value: false
-        left_motor_Link:
-          Value: false
-        left_wheel_link:
+        rgbd_camera_depth_optical_frame:
           Value: true
-        omniwheel_Link:
+        rgbd_camera_link:
           Value: true
-        right_motor_Link:
-          Value: false
-        right_wheel_link:
+        rgbd_camera_rgb_frame:
           Value: true
-        wall_body_Link:
-          Value: false
-        xtion_camera_Link:
+        rgbd_camera_rgb_optical_frame:
           Value: true
-        xtion_sensor_Link:
+        spr_bfl:
+          Value: true
+        spr_bfr:
+          Value: true
+        spr_brl:
+          Value: true
+        spr_brr:
           Value: true
       Marker Scale: 0.4
       Name: TF
@@ -194,32 +200,38 @@ Visualization Manager:
       Show Names: true
       Tree:
         base_link:
-          battery_Link:
+          Left_motor_link:
             {}
-          column_body_Link:
-            left_motor_Link:
+          Left_wheel_link:
+            {}
+          Right_motor_link:
+            {}
+          Right_wheel_link:
+            {}
+          asus_support_link:
+            {}
+          body_bottom_chassis_link:
+            {}
+          body_top_chassis_link:
+            {}
+          jetson_chassis_link:
+            {}
+          rgbd_camera_rgb_frame:
+            rgbd_camera_depth_frame:
+              rgbd_camera_depth_optical_frame:
+                {}
+            rgbd_camera_link:
               {}
-            right_motor_Link:
+            rgbd_camera_rgb_optical_frame:
               {}
-          electronics_Link:
-            jetson_board_Link:
-              {}
-          left_wheel_link:
+          spr_bfl:
             {}
-          omniwheel_Link:
+          spr_bfr:
             {}
-          right_wheel_link:
+          spr_brl:
             {}
-          wall_body_Link:
+          spr_brr:
             {}
-          xtion_sensor_Link:
-            xtion_camera_Link:
-              camera_rgb_frame:
-                camera_depth_frame:
-                  camera_depth_optical_frame:
-                    {}
-                camera_rgb_optical_frame:
-                  {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -258,10 +270,10 @@ Visualization Manager:
         Z: 0.0167882
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.745398
+      Pitch: 0.185398
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.9304
+      Yaw: 2.02541
     Saved: ~
 Window Geometry:
   Displays:

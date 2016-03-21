@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="myzharbot_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="myzharbot" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- Included URDF/XACRO Files -->
   <xacro:include filename="$(find myzharbot_description)/urdf/materials.urdf" />
@@ -17,12 +17,12 @@
   <property name="active_sprocket_radius" value="0.047625"/>
   <property name="passive_sprocket_radius" value="0.047625"/>
   <property name="active_sprocket_leght" value="0.034925"/>
-  <property name="passive_sprocket_leght" value="0.047625"/>
+  <property name="passive_sprocket_leght" value="0.008"/>
   <property name="passive_sprocket_offset_x" value="0.135"/>
   <property name="passive_sprocket_offset_y" value="0.165"/>
   <property name="passive_sprocket_offset_z" value="0.047625"/>
   <property name="active_sprocket_offset_x" value="-0.055"/>
-  <property name="active_sprocket_offset_y" value="0.160"/>
+  <property name="active_sprocket_offset_y" value="0.165"/>
   <property name="active_sprocket_offset_z" value="0.150"/>
   <!-- Sprockets params -->
 
@@ -67,7 +67,7 @@
   <link name="body_top_chassis_link">
     <visual>
       <geometry>
-        <box size="0.13 0.27 .055"/>
+        <box size="0.27 0.17 .055"/>
       </geometry>
       <material name="Black" />
     </visual>
@@ -76,7 +76,7 @@
     <axis xyz="0 0 1"/>
     <parent link="base_link"/>
     <child link="body_top_chassis_link"/>
-    <origin rpy="0 0 0" xyz="-0.035 0 ${passive_sprocket_offset_z+0.0375}"/>
+    <origin rpy="0 0 0" xyz="0 0 ${passive_sprocket_offset_z+0.0375}"/>
     <joint_properties damping="0.0" friction="0.0"/>
   </joint> 
 
