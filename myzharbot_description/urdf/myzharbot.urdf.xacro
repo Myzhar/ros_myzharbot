@@ -6,34 +6,43 @@
   <xacro:include filename="$(find myzharbot_description)/urdf/passive_sprocket.urdf.xacro" />
   <xacro:include filename="$(find myzharbot_description)/urdf/active_sprocket.urdf.xacro" />
   <xacro:include filename="$(find myzharbot_description)/urdf/motor.urdf.xacro" />
-  <xacro:include filename="$(find myzharbot_description)/urdf/sensors/asus_xtion_pro.urdf.xacro"/>
+  <xacro:include filename="$(find myzharbot_description)/urdf/sensors/zed.urdf.xacro"/>
   <!-- Included URDF/XACRO Files -->
 
   <!-- Global properties -->
   <property name="M_PI" value="3.14159"/>
   <!-- Global properties -->
   
-  <!-- Sprockets params -->
-  <property name="active_sprocket_radius" value="0.047625"/>
-  <property name="passive_sprocket_radius" value="0.047625"/>
-  <property name="active_sprocket_leght" value="0.034925"/>
+  <!-- Sprockets params -->  
+  <property name="passive_sprocket_radius" value="0.06"/>  
   <property name="passive_sprocket_leght" value="0.008"/>
-  <property name="passive_sprocket_offset_x" value="0.135"/>
-  <property name="passive_sprocket_offset_y" value="0.165"/>
-  <property name="passive_sprocket_offset_z" value="0.047625"/>
-  <property name="active_sprocket_offset_x" value="-0.055"/>
-  <property name="active_sprocket_offset_y" value="0.165"/>
-  <property name="active_sprocket_offset_z" value="0.150"/>
+  <property name="passive_sprocket_offset_x" value="0.1749"/>
+  <property name="passive_sprocket_offset_y" value="0.170"/>
+  <property name="passive_sprocket_offset_z" value="0.06"/>
+  
+  <property name="active_sprocket_radius" value="0.06"/>
+  <property name="active_sprocket_leght" value="0.05"/>
+  <property name="active_sprocket_offset_x" value="-0.09663"/>
+  <property name="active_sprocket_offset_y" value="0.170"/>
+  <property name="active_sprocket_offset_z" value="0.140"/>
   <!-- Sprockets params -->
 
-  <!-- Asus Xtion params -->
+  <!-- Body params -->
+  <property name="base_tickness" value="0.005"/>
+
+  <property name="main_body_height" value="0.15"/>
+
+  <property name="jetson_chassis_height" value="0.05"/>
+  <!-- Body params -->
+
+  <!-- ZED params -->
   <property name="cam_px" value="0.095" />
-  <property name="cam_py" value="0.022" />
-  <property name="cam_pz" value="0.1825" />
+  <property name="cam_py" value="0.06" />
+  <property name="cam_pz" value="0.245" />
   <property name="cam_or" value="0" />
   <property name="cam_op" value="0" />
   <property name="cam_oy" value="0" />
-  <!-- Asus Xtion params -->
+  <!-- ZED params -->
 
   <!-- base_link -->
   <link name="base_link">
@@ -51,47 +60,47 @@
   <link name="body_bottom_chassis_link">
     <visual>
       <geometry>
-        <box size="0.27 0.27 .005"/>
+        <box size="0.336 0.285 ${base_tickness}"/>
       </geometry>
-      <material name="Black" />
+      <material name="White" />
     </visual>
   </link>
   <joint name="Body_bottom" type="fixed">
     <axis xyz="0 0 1"/>
     <parent link="base_link"/>
     <child link="body_bottom_chassis_link"/>
-    <origin rpy="0 0 0" xyz="0 0 ${passive_sprocket_offset_z+0.01}"/>
+    <origin rpy="0 0 0" xyz="-0.0085 0 ${passive_sprocket_offset_z+base_tickness/2}"/>
     <joint_properties damping="0.0" friction="0.0"/>
   </joint>  
 
   <link name="body_top_chassis_link">
     <visual>
       <geometry>
-        <box size="0.27 0.17 .055"/>
+        <box size="0.336 0.235 ${main_body_height}"/>
       </geometry>
-      <material name="Black" />
+      <material name="White" />
     </visual>
   </link>
   <joint name="Body_top" type="fixed">
     <axis xyz="0 0 1"/>
     <parent link="base_link"/>
     <child link="body_top_chassis_link"/>
-    <origin rpy="0 0 0" xyz="0 0 ${passive_sprocket_offset_z+0.0375}"/>
+    <origin rpy="0 0 0" xyz="-0.0085 0 ${passive_sprocket_offset_z+main_body_height/2+base_tickness}"/>
     <joint_properties damping="0.0" friction="0.0"/>
   </joint> 
 
-  <link name="asus_support_link">
+  <link name="zed_support_link">
     <visual>
       <geometry>
         <box size="0.015 0.015 .015"/>
       </geometry>
-      <material name="Black" />
+      <material name="White" />
     </visual>
   </link>
-  <joint name="Asus_support" type="fixed">
+  <joint name="Zed_support" type="fixed">
     <axis xyz="0 0 1"/>
     <parent link="base_link"/>
-    <child link="asus_support_link"/>
+    <child link="zed_support_link"/>
     <origin rpy="0 0 0" xyz="${cam_px-0.01725} 0 0.1575"/>
     <joint_properties damping="0.0" friction="0.0"/>
   </joint>
@@ -101,23 +110,23 @@
   <link name="jetson_chassis_link">
     <visual>
       <geometry>
-        <box size="0.13 0.15 .095"/>
+        <box size="0.27 0.27 ${jetson_chassis_height}"/>
       </geometry>
-      <material name="Black" />
+      <material name="White" />
     </visual>
   </link>
   <joint name="Jetson" type="fixed">
     <axis xyz="0 0 1"/>
     <parent link="base_link"/>
     <child link="jetson_chassis_link"/>
-    <origin rpy="0 0 0" xyz="0.035 0 ${passive_sprocket_offset_z+0.0125+0.0475}"/>
+    <origin rpy="0 0 0" xyz="-0.04 0 ${passive_sprocket_offset_z+main_body_height+base_tickness+jetson_chassis_height/2}"/>
     <joint_properties damping="0.0" friction="0.0"/>
   </joint>  
   <!-- Jetson chassis --> 
 
-  <!-- Asus Xtion Pro Live -->  
-  <xacro:sensor_asus_xtion_pro parent="base_link"/>
-  <!-- Asus Xtion Pro Live --> 
+  <!-- Stereolabs ZED -->  
+  <xacro:sensor_stereolabs_zed parent="base_link"/>
+  <!-- Stereolabs ZED --> 
 
   <!-- Active Sprockets -->
   <xacro:myzharbot_active_sprocket position="Left">
@@ -127,10 +136,10 @@
     <origin xyz="${active_sprocket_offset_x} ${-active_sprocket_offset_y} ${active_sprocket_offset_z}" rpy="${-M_PI/2} 0 0" />
   </xacro:myzharbot_active_sprocket>
   <xacro:myzharbot_motor position="Left">
-    <origin xyz="${active_sprocket_offset_x} ${active_sprocket_offset_y-2*active_sprocket_leght} ${active_sprocket_offset_z}" rpy="${-M_PI/2} 0 0" />
+    <origin xyz="${active_sprocket_offset_x} ${active_sprocket_offset_y-active_sprocket_leght/2} ${active_sprocket_offset_z}" rpy="${-M_PI/2} 0 0" />
   </xacro:myzharbot_motor>
   <xacro:myzharbot_motor position="Right">
-    <origin xyz="${active_sprocket_offset_x} ${-(active_sprocket_offset_y-2*active_sprocket_leght)} ${active_sprocket_offset_z}" rpy="${-M_PI/2} 0 0" />
+    <origin xyz="${active_sprocket_offset_x} ${-(active_sprocket_offset_y-active_sprocket_leght/2)} ${active_sprocket_offset_z}" rpy="${-M_PI/2} 0 0" />
   </xacro:myzharbot_motor>
   <!-- Active Sprockets -->  
     
