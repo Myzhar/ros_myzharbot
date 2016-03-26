@@ -1,7 +1,7 @@
 <launch>
   <node pkg="ros_ultrasonic_bumper" type="ultrasonic_bumper_node" name="ultrasonic_bumper_node" output="screen">      
      <!-- Serial port [Default "/dev/ttyUSB0"] -->
-     <param name="serial_port" value="/dev/ttyUSB1"/>
+     <param name="serial_port" value="/dev/ttyTHS2"/> <!-- JetsonTX1 J17 Serial Port -->
      
      <!-- Serial baudrate [Default 115200] -->
      <param name="baudrate" value="115200"/>

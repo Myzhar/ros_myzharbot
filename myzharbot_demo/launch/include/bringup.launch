@@ -2,7 +2,7 @@
 
 <launch>
 
-  <arg name="zed_stereo_enabled" default="false"/>
+  <arg name="zed_stereo_enabled" default="true"/>
   <arg name="joystick_enabled" default="false"/>
 
   <!-- Start uNav Hardware Interface -->
@@ -16,8 +16,8 @@
   <!-- Start IMU sensor -->
   <include file="$(find myzharbot_control)/launch/include/imu.launch" />
 
-  <!-- Start DCDC Diagnostic node -->
-  <include file="$(find myzharbot_control)/launch/include/dcdc_diagnostic.launch" />
+  <!-- Start DCDC Diagnostic node --> <!-- Not yet working on Jetson TX1 -->
+  <!-- <include file="$(find myzharbot_control)/launch/include/dcdc_diagnostic.launch" /> -->
 
   <!-- Load teleoperation telecontrol -->
   <!-- <group if="$(arg joystick_enabled)">
