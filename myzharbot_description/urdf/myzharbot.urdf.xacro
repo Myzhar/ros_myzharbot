@@ -36,12 +36,12 @@
   <!-- Body params -->
 
   <!-- ZED params -->
-  <property name="cam_px" value="0.0725" />
-  <property name="cam_py" value="0.06" />
-  <property name="cam_pz" value="0.208" />
-  <property name="cam_or" value="0" />
-  <property name="cam_op" value="0" />
-  <property name="cam_oy" value="0" />
+  <property name="zed_px" value="0.0725" />
+  <property name="zed_py" value="0.0" />
+  <property name="zed_pz" value="0.208" />
+  <property name="zed_or" value="0" />
+  <property name="zed_op" value="0" />
+  <property name="zed_oy" value="0" />
   <!-- ZED params -->
 
   <!-- base_link -->

@@ -12,9 +12,9 @@
   <xacro:macro name="sensor_stereolabs_zed" params="parent">
     
     <joint name="zed_left_joint" type="fixed">
-      <origin xyz="${cam_px} ${cam_py} ${cam_pz}" 
-              rpy="${cam_or} ${cam_op} ${cam_oy}"/>
-      <parent link="${parent}"/>
+      <origin xyz="0 ${optical_y_offset} 0" 
+              rpy="0 0 0"/>
+      <parent link="zed_camera_link"/>
       <child link="zed_left_frame" />
     </joint>
     <link name="zed_left_frame"/>
@@ -27,9 +27,9 @@
     <link name="zed_left_optical_frame"/>
 
     <joint name="_camera_joint" type="fixed">
-      <origin xyz="0 ${-optical_y_offset} 0" 
-              rpy="0 0 0"/>
-      <parent link="zed_left_frame"/>
+      <origin xyz="${zed_px} ${zed_py} ${zed_pz}" 
+              rpy="${zed_or} ${zed_op} ${zed_oy}"/>
+      <parent link="${parent}"/>
       <child link="zed_camera_link"/>
     </joint>
     <link name="zed_camera_link">
@@ -56,8 +56,8 @@
     </link>
 
     <joint name="zed_right_joint" type="fixed">
-      <origin xyz="0 ${-2*optical_y_offset} 0" rpy="0 0 0" />
-      <parent link="zed_left_frame" />
+      <origin xyz="0 ${-optical_y_offset} 0" rpy="0 0 0" />
+      <parent link="zed_camera_link" />
       <child link="zed_right_frame" />
     </joint>
     <link name="zed_right_frame"/>
