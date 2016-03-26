@@ -2,15 +2,15 @@
 
 <launch>
 
-  <arg name="rgbd_enabled" default="false"/>
+  <arg name="zed_stereo_enabled" default="false"/>
   <arg name="joystick_enabled" default="false"/>
 
   <!-- Start uNav Hardware Interface -->
   <include file="$(find myzharbot_control)/launch/include/driver.launch" />
   
-  <!-- Start RGBD camera and laser scan -->
-  <group if="$(arg rgbd_enabled)">
-    <include file="$(find myzharbot_control)/launch/include/rgbd.launch" />
+  <!-- Start ZED camera and laser scan -->
+  <group if="$(arg zed_stereo_enabled)">
+    <include file="$(find myzharbot_control)/launch/include/zed_stereo.launch" />
   </group>  
 
   <!-- Start IMU sensor -->

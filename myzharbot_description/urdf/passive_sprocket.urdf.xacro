@@ -8,7 +8,7 @@
         <geometry>
           <cylinder length="${passive_sprocket_leght}" radius="${passive_sprocket_radius}"/>
         </geometry>
-        <material name="White" />
+        <material name="LightGreyT" />
       </visual>
     </link>
   

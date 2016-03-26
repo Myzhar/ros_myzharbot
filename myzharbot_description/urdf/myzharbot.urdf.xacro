@@ -36,9 +36,9 @@
   <!-- Body params -->
 
   <!-- ZED params -->
-  <property name="cam_px" value="0.095" />
+  <property name="cam_px" value="0.0725" />
   <property name="cam_py" value="0.06" />
-  <property name="cam_pz" value="0.245" />
+  <property name="cam_pz" value="0.238" />
   <property name="cam_or" value="0" />
   <property name="cam_op" value="0" />
   <property name="cam_oy" value="0" />
@@ -62,7 +62,7 @@
       <geometry>
         <box size="0.336 0.285 ${base_tickness}"/>
       </geometry>
-      <material name="White" />
+      <material name="LightGreyT" />
     </visual>
   </link>
   <joint name="Body_bottom" type="fixed">
@@ -78,7 +78,7 @@
       <geometry>
         <box size="0.336 0.235 ${main_body_height}"/>
       </geometry>
-      <material name="White" />
+      <material name="LightGreyT" />
     </visual>
   </link>
   <joint name="Body_top" type="fixed">
@@ -88,22 +88,6 @@
     <origin rpy="0 0 0" xyz="-0.0085 0 ${passive_sprocket_offset_z+main_body_height/2+base_tickness}"/>
     <joint_properties damping="0.0" friction="0.0"/>
   </joint> 
-
-  <link name="zed_support_link">
-    <visual>
-      <geometry>
-        <box size="0.015 0.015 .015"/>
-      </geometry>
-      <material name="White" />
-    </visual>
-  </link>
-  <joint name="Zed_support" type="fixed">
-    <axis xyz="0 0 1"/>
-    <parent link="base_link"/>
-    <child link="zed_support_link"/>
-    <origin rpy="0 0 0" xyz="${cam_px-0.01725} 0 0.1575"/>
-    <joint_properties damping="0.0" friction="0.0"/>
-  </joint>
   <!-- Body chassis --> 
 
   <!-- Jetson chassis -->
@@ -112,7 +96,7 @@
       <geometry>
         <box size="0.27 0.27 ${jetson_chassis_height}"/>
       </geometry>
-      <material name="White" />
+      <material name="LightGreyT" />
     </visual>
   </link>
   <joint name="Jetson" type="fixed">

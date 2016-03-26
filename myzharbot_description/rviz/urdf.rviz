@@ -123,32 +123,27 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        stereo_camera_left_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        stereo_camera_left_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        stereo_camera_link:
+        zed_camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        stereo_camera_right_frame:
+        zed_left_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        stereo_camera_right_optical_frame:
+        zed_left_optical_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        zed_support_link:
+        zed_right_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
+        zed_right_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -184,23 +179,21 @@ Visualization Manager:
           Value: true
         spr_brr:
           Value: true
-        stereo_camera_left_frame:
+        zed_camera_link:
           Value: true
-        stereo_camera_left_optical_frame:
+        zed_left_frame:
           Value: true
-        stereo_camera_link:
+        zed_left_optical_frame:
           Value: true
-        stereo_camera_right_frame:
+        zed_right_frame:
           Value: true
-        stereo_camera_right_optical_frame:
-          Value: true
-        zed_support_link:
+        zed_right_optical_frame:
           Value: true
       Marker Scale: 0.4
       Name: TF
       Show Arrows: true
       Show Axes: true
-      Show Names: true
+      Show Names: false
       Tree:
         base_link:
           Left_motor_link:
@@ -225,16 +218,14 @@ Visualization Manager:
             {}
           spr_brr:
             {}
-          stereo_camera_left_frame:
-            stereo_camera_left_optical_frame:
+          zed_left_frame:
+            zed_camera_link:
               {}
-            stereo_camera_link:
+            zed_left_optical_frame:
               {}
-            stereo_camera_right_frame:
-              stereo_camera_right_optical_frame:
+            zed_right_frame:
+              zed_right_optical_frame:
                 {}
-          zed_support_link:
-            {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -261,22 +252,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.05282
+      Distance: 0.884631
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.0318855
-        Y: -0.0104426
-        Z: 0.0167882
+        X: 0.0537371
+        Y: -0.041509
+        Z: 0.166895
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.260398
+      Pitch: 0.325398
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.26541
+      Yaw: 1.70541
     Saved: ~
 Window Geometry:
   Displays:

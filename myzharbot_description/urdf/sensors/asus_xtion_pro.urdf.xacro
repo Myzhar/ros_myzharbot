@@ -35,6 +35,7 @@
         <geometry>
           <mesh filename="package://ros_myzharbot_robot/meshes/sensors/asus_xtion_pro_live.dae" scale="${M_SCALE} ${M_SCALE} ${M_SCALE}"/>
         </geometry>
+        <material name="DarkGrey" />
       </visual>
       <collision>
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
