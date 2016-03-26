@@ -1,11 +1,12 @@
 <launch>
   <arg name="svo_file"         default=""/>
-  <arg name="publish_tf"       default="true"/>
+  <arg name="publish_tf"       default="false"/>
   <arg name="camera"           default="zed_camera"/>
 
   <!-- Laserscan topic -->
   <arg name="scan_topic" default="scan"/>
   <arg name="scan_processing"  default="true"/>
+  <arg name="cloud_frame_id"  default="zed_left_frame"/>
 
   <group if="$(arg publish_tf)">
     <include file="$(find zed_wrapper)/launch/zed_tf.launch" />
@@ -21,22 +22,22 @@
 
       <param name="rgb_topic"             value="rgb/image_rect_color" />
       <param name="rgb_cam_info_topic"    value="rgb/camera_info" />
-      <param name="rgb_frame_id"          value="/zed_left_frame" />
+      <param name="rgb_frame_id"          value="zed_left_frame" />
 
       <param name="left_topic"            value="left/image_rect_color" />
       <param name="left_cam_info_topic"   value="left/camera_info" />
-      <param name="left_frame_id"         value="/zed_left_frame" />
+      <param name="left_frame_id"         value="zed_left_frame" />
 
       <param name="right_topic"           value="right/image_rect_color" />
       <param name="right_cam_info_topic"  value="right/camera_info" />
-      <param name="right_frame_id"        value="/zed_right_frame" />
+      <param name="right_frame_id"        value="zed_right_frame" />
 
-      <param name="depth_topic"           value="depth/image_rect_color" />
+      <param name="depth_topic"           value="depth/image_raw" />
       <param name="depth_cam_info_topic"  value="depth/camera_info" />
-      <param name="depth_frame_id"        value="/zed_left_frame" />
+      <param name="depth_frame_id"        value="zed_left_frame" />
 
       <param name="point_cloud_topic"     value="point_cloud/cloud" />
-      <param name="cloud_frame_id"        value="/zed_left_frame" />
+      <param name="cloud_frame_id"        value="$(arg cloud_frame_id)" />
 
     </node>
   </group>
@@ -49,7 +50,7 @@
       <!-- Pixel rows to use to generate the laserscan. For each column, the scan will
            return the minimum value for those pixels centered vertically in the image. -->
       <param name="scan_height" value="7"/>
-      <param name="output_frame_id" value="/$(arg camera)/$(cloud_frame_id)"/>
+      <param name="output_frame_id" value="/$(arg camera)/$(arg cloud_frame_id)"/>
       <param name="range_min" value="0.45"/>
       <remap from="image" to="$(arg camera)/depth/image_raw"/>
       <remap from="scan" to="$(arg scan_topic)"/>
