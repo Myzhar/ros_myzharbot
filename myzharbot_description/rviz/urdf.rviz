@@ -1,5 +1,4 @@
-Panels:
-  - Class: rviz/Displays
+ - Class: rviz/Displays
     Help Height: 81
     Name: Displays
     Property Tree Widget:
@@ -40,7 +39,7 @@ Visualization Manager:
       Cell Size: 1
       Class: rviz/Grid
       Color: 160; 160; 164
-      Enabled: true
+      Enabled: false
       Line Style:
         Line Width: 0.03
         Value: Lines

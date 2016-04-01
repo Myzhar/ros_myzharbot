@@ -7,6 +7,7 @@
   <xacro:include filename="$(find myzharbot_description)/urdf/active_sprocket.urdf.xacro" />
   <xacro:include filename="$(find myzharbot_description)/urdf/motor.urdf.xacro" />
   <xacro:include filename="$(find myzharbot_description)/urdf/sensors/zed.urdf.xacro"/>
+  <xacro:include filename="$(find myzharbot_description)/urdf/sensors/imu.urdf.xacro"/>
   <!-- Included URDF/XACRO Files -->
 
   <!-- Global properties -->
@@ -107,6 +108,13 @@
     <joint_properties damping="0.0" friction="0.0"/>
   </joint>  
   <!-- Jetson chassis --> 
+
+  <!-- IMU -->
+  <xacro:imu name="imu" parent="base_link">
+    <!--<origin xyz="0 0 0.22" rpy="0 0 0" />-->
+    <origin xyz="0.0 0.000 0.22" rpy="0 0 0" />
+  </xacro:imu>
+  <!-- IMU -->
 
   <!-- Stereolabs ZED -->  
   <xacro:sensor_stereolabs_zed parent="base_link"/>
